@@ -36,28 +36,28 @@ public class CheckoutActivity extends AppCompatActivity {
 
         // 3. Setup the Button Click
         submitBtn.setOnClickListener(v -> {
-            String tableNum = tableInput.getText().toString();
+            String tableString = tableInput.getText().toString();
 
-            if (tableNum.isEmpty() || cart.isEmpty()) {
+            if (tableString.isEmpty() || cart.isEmpty()) {
                 Toast.makeText(this, "Please enter a table number and add items!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // Setup Retrofit
+            // Convert the typed text into a real Integer
+            Integer tableNum = Integer.parseInt(tableString);
+
             FoodApi api = new Retrofit.Builder()
                     .baseUrl("http://10.0.2.2:8080/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(FoodApi.class);
 
-            // 4. Send the orders to the Docker container!
-            // Note: Since our current backend OrderRequest only takes one item ID at a time,
-            // we will loop through the cart and send them sequentially.
             for (MenuItem item : cart) {
-                OrderRequest request = new OrderRequest(item.getId());
-                // If your backend also accepts a Table ID, you would add it to OrderRequest and pass it here!
+                // WE NOW PASS BOTH THE FOOD ID AND THE TABLE NUMBER!
+                OrderRequest request = new OrderRequest(item.getId(), tableNum);
 
                 api.placeOrder(request).enqueue(new Callback<Void>() {
+                    // ... keep your existing onResponse and onFailure methods exactly the same ...
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if (response.isSuccessful()) {
