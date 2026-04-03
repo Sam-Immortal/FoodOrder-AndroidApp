@@ -21,24 +21,23 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ChefFragment extends Fragment {
+public class MyOrdersFragment extends Fragment {
 
-    private RecyclerView kitchenRecyclerView;
+    private RecyclerView myOrdersRecyclerView;
     private FoodApi api;
-
-    // --- Polling and Translation Variables ---
     private Map<Long, String> foodDictionary = new HashMap<>();
+
     private Handler pollingHandler = new Handler(Looper.getMainLooper());
     private Runnable pollingRunnable;
-    private final int POLL_INTERVAL = 5000; // 5000 milliseconds = 5 seconds
+    private final int POLL_INTERVAL = 5000;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_chef, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_orders, container, false);
 
-        kitchenRecyclerView = view.findViewById(R.id.kitchenRecyclerView);
-        kitchenRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        myOrdersRecyclerView = view.findViewById(R.id.myOrdersRecyclerView);
+        myOrdersRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         api = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8080/")
@@ -46,7 +45,6 @@ public class ChefFragment extends Fragment {
                 .build()
                 .create(FoodApi.class);
 
-        // 1. Fetch the menu first to build the dictionary, THEN start polling orders
         fetchMenuToBuildDictionary();
 
         return view;
@@ -58,17 +56,14 @@ public class ChefFragment extends Fragment {
             public void onResponse(Call<List<MenuItem>> call, Response<List<MenuItem>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     for (MenuItem item : response.body()) {
-                        // Save ID -> Name (e.g., 1 -> "Paneer Tikka")
                         foodDictionary.put(item.getId(), item.getName());
                     }
                 }
-                // Once dictionary is built, start the heartbeat loop!
                 startPolling();
             }
-
             @Override
             public void onFailure(Call<List<MenuItem>> call, Throwable t) {
-                Toast.makeText(requireContext(), "Failed to load menu dictionary.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "Failed to load menu.", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -77,11 +72,11 @@ public class ChefFragment extends Fragment {
         pollingRunnable = new Runnable() {
             @Override
             public void run() {
-                fetchOrders(); // Fetch the latest orders
-                pollingHandler.postDelayed(this, POLL_INTERVAL); // Schedule the next run in 5 seconds
+                fetchOrders();
+                pollingHandler.postDelayed(this, POLL_INTERVAL);
             }
         };
-        pollingHandler.post(pollingRunnable); // Trigger the first run immediately
+        pollingHandler.post(pollingRunnable);
     }
 
     private void fetchOrders() {
@@ -89,48 +84,18 @@ public class ChefFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-
-                    // Pass the dictionary into our updated Adapter!
-                    KitchenAdapter adapter = new KitchenAdapter(response.body(), foodDictionary, order -> {
-                        updateStatusInDatabase(order.getId());
-                    });
-
-                    kitchenRecyclerView.setAdapter(adapter);
-
+                    MyOrdersAdapter adapter = new MyOrdersAdapter(response.body(), foodDictionary);
+                    myOrdersRecyclerView.setAdapter(adapter);
                 }
             }
-
             @Override
-            public void onFailure(Call<List<Order>> call, Throwable t) {
-                // Silently fail during polling so we don't spam the user with toasts
-            }
+            public void onFailure(Call<List<Order>> call, Throwable t) {}
         });
     }
 
-    private void updateStatusInDatabase(Long orderId) {
-        StatusUpdateRequest request = new StatusUpdateRequest("Ready");
-
-        api.updateOrderStatus(orderId, request).enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(requireContext(), "Order marked as Ready!", Toast.LENGTH_SHORT).show();
-                    fetchOrders(); // Force an immediate refresh so the button disappears instantly
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(requireContext(), "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    // --- Critical Battery Saving Step ---
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        // If the chef closes the tab, STOP the 5-second loop!
         if (pollingHandler != null && pollingRunnable != null) {
             pollingHandler.removeCallbacks(pollingRunnable);
         }

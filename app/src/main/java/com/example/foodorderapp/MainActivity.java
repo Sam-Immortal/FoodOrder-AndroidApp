@@ -18,10 +18,11 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(item -> {
             Fragment selectedFragment = null;
 
+            // Route strictly to Customer features
             if (item.getItemId() == R.id.nav_customer) {
                 selectedFragment = new CustomerFragment();
-            } else if (item.getItemId() == R.id.nav_chef) {
-                selectedFragment = new ChefFragment();
+            } else if (item.getItemId() == R.id.nav_my_orders) {
+                selectedFragment = new MyOrdersFragment();
             }
 
             // Swap the screen to the chosen tab

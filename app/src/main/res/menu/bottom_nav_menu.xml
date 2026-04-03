@@ -5,7 +5,7 @@
         android:icon="@android:drawable/ic_menu_agenda"
         android:title="Menu" />
     <item
-        android:id="@+id/nav_chef"
-        android:icon="@android:drawable/ic_menu_manage"
-        android:title="Kitchen" />
+        android:id="@+id/nav_my_orders"
+        android:icon="@android:drawable/ic_menu_recent_history"
+        android:title="My Orders" />
 </menu>

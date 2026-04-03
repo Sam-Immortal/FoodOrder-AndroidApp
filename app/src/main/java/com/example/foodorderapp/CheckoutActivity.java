@@ -20,6 +20,14 @@ public class CheckoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
+        // 1. Link the back button
+        Button backBtn = findViewById(R.id.backToMenuBtn);
+
+        // 2. Tell it to close this screen when clicked
+        backBtn.setOnClickListener(v -> {
+            finish(); // This destroys the Checkout screen and drops them right back to the Menu!
+        });
+
         TextView summaryText = findViewById(R.id.orderSummaryText);
         EditText tableInput = findViewById(R.id.tableNumberInput);
         Button submitBtn = findViewById(R.id.submitOrderBtn);
