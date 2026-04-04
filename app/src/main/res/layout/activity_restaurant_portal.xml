@@ -9,33 +9,25 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="FoodOrder App"
-        android:textSize="32sp"
+        android:text="Restaurant Portal"
+        android:textSize="28sp"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_marginBottom="48dp" />
+        android:layout_marginBottom="32dp" />
 
     <Button
-        android:id="@+id/btnCustomer"
+        android:id="@+id/btnPortalLogin"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="1. Customer (Order Food)"
+        android:text="Manager Login"
         android:textSize="18sp"
         android:layout_marginBottom="16dp" />
 
     <Button
-        android:id="@+id/btnChef"
+        android:id="@+id/btnPortalRegister"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="2. Chef"
-        android:textSize="18sp"
-        android:layout_marginBottom="16dp" />
-
-    <Button
-        android:id="@+id/btnRestaurant"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="3. Restaurant"
+        android:text="Register New Restaurant"
         android:textSize="18sp"
         android:layout_marginBottom="16dp" />
 

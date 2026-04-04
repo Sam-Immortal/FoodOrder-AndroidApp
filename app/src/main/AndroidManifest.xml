@@ -27,7 +27,9 @@
         <activity android:name=".CheckoutActivity" android:exported="false" />
         <activity android:name=".MainActivity" android:exported="false" />
         <activity android:name=".RestaurantRegisterActivity" android:exported="false" />
+        <activity android:name=".ManagerLoginActivity" />
         <activity android:name=".ManagerMainActivity" android:exported="false" />
+        <activity android:name=".RestaurantPortalActivity" />
 
     </application>
 

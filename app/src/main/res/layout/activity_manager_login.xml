@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/context"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="32dp"
-    android:gravity="center">
+    android:gravity="center"
+    tools:context=".ManagerLoginActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Chef Portal"
+        android:text="Manager Login"
         android:textSize="28sp"
         android:textStyle="bold"
         android:gravity="center"
         android:layout_marginBottom="32dp" />
 
     <EditText
-        android:id="@+id/inputChefUsername"
+        android:id="@+id/inputLoginName"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@android:drawable/edit_text"
-        android:hint="Chef Username or ID"
+        android:hint="Restaurant Name"
         android:inputType="textPersonName"
         android:padding="12dp"
         android:layout_marginBottom="16dp" />
 
     <EditText
-        android:id="@+id/inputChefPassword"
+        android:id="@+id/inputLoginPassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@android:drawable/edit_text"
@@ -36,10 +39,10 @@
         android:layout_marginBottom="32dp" />
 
     <Button
-        android:id="@+id/btnChefLogin"
+        android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:text="Login to Kitchen"
+        android:text="Login"
         android:textSize="18sp"
         android:layout_marginBottom="16dp" />
 
