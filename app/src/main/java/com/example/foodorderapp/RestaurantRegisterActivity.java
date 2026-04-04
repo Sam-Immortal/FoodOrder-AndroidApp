@@ -34,7 +34,7 @@ public class RestaurantRegisterActivity extends AppCompatActivity {
 
             // 1. Create the Manager object.
             // We pass "" (an empty string) for the email since we dropped it from the UI!
-            Manager newManager = new Manager(name, "", pass);
+            Manager newManager = new Manager(name, pass);
 
             // 2. Prepare the network call
             ManagerApiService apiService = RetrofitClient.getClient().create(ManagerApiService.class);
