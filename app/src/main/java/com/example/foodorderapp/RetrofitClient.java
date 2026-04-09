@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
     // IMPORTANT: Use 10.0.2.2 if testing on the Android Emulator!
     // Use your computer's IP (e.g., 192.168.x.x) if testing on a physical phone!
-    private static final String BASE_URL = "http://192.168.0.178:8080/";
+    private static final String BASE_URL = "http://10.100.60.105:8080/";
 
     private static Retrofit retrofit = null;
 

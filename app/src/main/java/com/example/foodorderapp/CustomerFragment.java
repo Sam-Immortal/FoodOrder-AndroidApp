@@ -34,7 +34,7 @@ public class CustomerFragment extends Fragment {
         menuRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         FoodApi api = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/")
+                .baseUrl("http://10.100.60.105:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(FoodApi.class);
