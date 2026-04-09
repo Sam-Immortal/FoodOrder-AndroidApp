@@ -9,7 +9,8 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path; // Make sure this is imported!
 
 public interface FoodApi {
-    @GET("api/menu")
+    // In your FoodApi.java interface
+    @GET("api/menu/all") // Add the /all here!
     Call<List<MenuItem>> getMenu();
 
     @POST("api/orders")

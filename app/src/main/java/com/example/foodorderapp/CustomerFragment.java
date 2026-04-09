@@ -2,6 +2,7 @@ package com.example.foodorderapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,9 @@ public class CustomerFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<MenuItem>> call, Throwable t) {
+                // This line will print the exact crash reason in red text inside Logcat!
+                android.util.Log.e("API_ERROR", "Menu fetch failed completely!", t);
+
                 Toast.makeText(requireContext(), "Error: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
