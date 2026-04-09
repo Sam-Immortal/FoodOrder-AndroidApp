@@ -40,7 +40,7 @@ public class MyOrdersFragment extends Fragment {
         myOrdersRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         api = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/")
+                .baseUrl("http://10.100.60.105:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(FoodApi.class);
