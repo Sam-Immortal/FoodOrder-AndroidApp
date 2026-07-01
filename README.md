@@ -39,7 +39,50 @@ A comprehensive Android application for managing food ordering, delivery, and re
 
 ## 🏗️ Project Structure
 
-FoodOrder-AndroidApp/ ├── app/ │ ├── src/ │ │ ├── main/ │ │ │ ├── java/com/example/foodorderapp/ │ │ │ │ ├── Activities/ │ │ │ │ │ ├── LandingActivity.java # Entry point - Role selection │ │ │ │ │ ├── MainActivity.java # Customer dashboard │ │ │ │ │ ├── ChefMainActivity.java # Chef dashboard │ │ │ │ │ ├── ChefLoginActivity.java # Chef authentication │ │ │ │ │ ├── ManagerMainActivity.java # Restaurant manager dashboard │ │ │ │ │ ├── ManagerLoginActivity.java # Manager authentication │ │ │ │ │ ├── CheckoutActivity.java # Order checkout │ │ │ │ │ ├── RestaurantRegisterActivity.java # Restaurant registration │ │ │ │ │ └── RestaurantPortalActivity.java # Manager portal │ │ │ │ ├── Fragments/ │ │ │ │ │ ├── CustomerFragment.java # Customer menu browsing │ │ │ │ │ ├── MyOrdersFragment.java # Order history │ │ │ │ │ └── ChefFragment.java # Chef order queue │ │ │ │ ├── API/ │ │ │ │ │ ├── RetrofitClient.java # Retrofit HTTP client │ │ │ │ │ ├── MenuApiService.java # Menu endpoints │ │ │ │ │ ├── ChefApiService.java # Chef endpoints │ │ │ │ │ └── ManagerApiService.java # Manager endpoints │ │ │ │ ├── Models/ │ │ │ │ │ ├── MenuItem.java # Menu item data model │ │ │ │ │ ├── Chef.java # Chef data model │ │ │ │ │ ├── Manager.java # Manager/Restaurant data model │ │ │ │ │ ├── Order.java # Order data model │ │ │ │ │ └── LoginRequest.java # Login request model │ │ │ │ └── Utils/ # Utility classes │ │ │ ├── res/ │ │ │ │ ├── layout/ # XML layout files │ │ │ │ ├── values/ # Colors, strings, styles │ │ │ │ └── mipmap/ # App icons │ │ │ └── AndroidManifest.xml # App configuration │ │ └── test/ # Unit tests │ └── build.gradle.kts # App-level build config ├── gradle/ # Gradle wrapper ├── build.gradle.kts # Project-level build config ├── settings.gradle.kts # Project settings └── gradle.properties # Gradle properties
+```
+FoodOrder-AndroidApp/
+├── app/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/example/foodorderapp/
+│   │   │   │   ├── Activities/
+│   │   │   │   │   ├── LandingActivity.java           # Entry point - Role selection
+│   │   │   │   │   ├── MainActivity.java              # Customer dashboard
+│   │   │   │   │   ├── ChefMainActivity.java          # Chef dashboard
+│   │   │   │   │   ├── ChefLoginActivity.java         # Chef authentication
+│   │   │   │   │   ├── ManagerMainActivity.java       # Restaurant manager dashboard
+│   │   │   │   │   ├── ManagerLoginActivity.java      # Manager authentication
+│   │   │   │   │   ├── CheckoutActivity.java          # Order checkout
+│   │   │   │   │   ├── RestaurantRegisterActivity.java # Restaurant registration
+│   │   │   │   │   └── RestaurantPortalActivity.java  # Manager portal
+│   │   │   │   ├── Fragments/
+│   │   │   │   │   ├── CustomerFragment.java          # Customer menu browsing
+│   │   │   │   │   ├── MyOrdersFragment.java          # Order history
+│   │   │   │   │   └── ChefFragment.java              # Chef order queue
+│   │   │   │   ├── API/
+│   │   │   │   │   ├── RetrofitClient.java            # Retrofit HTTP client
+│   │   │   │   │   ├── MenuApiService.java            # Menu endpoints
+│   │   │   │   │   ├── ChefApiService.java            # Chef endpoints
+│   │   │   │   │   └── ManagerApiService.java         # Manager endpoints
+│   │   │   │   ├── Models/
+│   │   │   │   │   ├── MenuItem.java                  # Menu item data model
+│   │   │   │   │   ├── Chef.java                      # Chef data model
+│   │   │   │   │   ├── Manager.java                   # Manager/Restaurant data model
+│   │   │   │   │   ├── Order.java                     # Order data model
+│   │   │   │   │   └── LoginRequest.java              # Login request model
+│   │   │   │   └── Utils/                             # Utility classes
+│   │   │   ├── res/
+│   │   │   │   ├── layout/                            # XML layout files
+│   │   │   │   ├── values/                            # Colors, strings, styles
+│   │   │   │   └── mipmap/                            # App icons
+│   │   │   └── AndroidManifest.xml                    # App configuration
+│   │   └── test/                                      # Unit tests
+│   └── build.gradle.kts                               # App-level build config
+├── gradle/                                            # Gradle wrapper
+├── build.gradle.kts                                   # Project-level build config
+├── settings.gradle.kts                                # Project settings
+└── gradle.properties                                  # Gradle properties
+```
 
 
 ## 🏛️ Architecture
@@ -84,14 +127,20 @@ The app follows a **multi-activity, fragment-based architecture** with separatio
 git clone https://github.com/Sam-Immortal/FoodOrder-AndroidApp.git
 cd FoodOrder-AndroidApp
 
-2. Open in Android Studio
+```
+
+### 2. Open in Android Studio
+```bash
 
 # Using command line
 android-studio .
 
 # Or open Android Studio and use File > Open > Select the project directory
 
-3. Build the Project
+```
+
+### 3. Build the Project
+```bash
 
 # Sync Gradle files
 ./gradlew sync
@@ -102,55 +151,61 @@ android-studio .
 # Build and install on connected device/emulator
 ./gradlew installDebug
 
-4. Run the App
+```
 
-    Select a virtual device or connect a physical Android device
-    Click Run (or press Shift + F10)
+### 4. Run the App
+- Select a virtual device or connect a physical Android device
+- Click **Run** (or press Shift + F10)
 
-📱 Usage
-First-Time Launch
+## 📱 Usage
 
-    Landing Screen: Choose your role
-        🛍️ Customer - Browse and order food
-        👨‍🍳 Chef - Manage food preparation
-        🏪 Restaurant - Manage menu and operations
+### First-Time Launch
+1. **Landing Screen**: Choose your role
+   - 🛍️ **Customer** - Browse and order food
+   - 👨‍🍳 **Chef** - Manage food preparation
+   - 🏪 **Restaurant** - Manage menu and operations
 
-Customer Flow
+### Customer Flow
+1. Enter **Customer Dashboard** → Browse available menu items
+2. Select items and proceed to **Checkout**
+3. Complete order and track in **My Orders**
 
-    Enter Customer Dashboard → Browse available menu items
-    Select items and proceed to Checkout
-    Complete order and track in My Orders
+### Chef Flow
+1. Enter **Chef Login** with username and password
+2. View incoming orders in the **Kitchen Queue**
+3. Mark orders as completed
 
-Chef Flow
+### Manager/Restaurant Flow
+1. Enter **Manager Login** with restaurant name and password
+2. Access **Restaurant Portal** to:
+   - Add/remove menu items
+   - Hire and manage chefs
+   - Monitor orders in real-time
 
-    Enter Chef Login with username and password
-    View incoming orders in the Kitchen Queue
-    Mark orders as completed
+## 👥 User Roles
 
-Manager/Restaurant Flow
+| Role | Permissions | Key Activities |
+|------|-------------|-----------------|
+| **Customer** | Browse, Order, Checkout | Browse menu, place orders, view history |
+| **Chef** | View Orders, Mark Complete | Receive orders, prepare food, update status |
+| **Manager** | Full Control | Manage menu, staff, pricing, operations |
 
-    Enter Manager Login with restaurant name and password
-    Access Restaurant Portal to:
-        Add/remove menu items
-        Hire and manage chefs
-        Monitor orders in real-time
+## 🌐 API Integration
 
-👥 User Roles
-Role	Permissions	Key Activities
-Customer	Browse, Order, Checkout	Browse menu, place orders, view history
-Chef	View Orders, Mark Complete	Receive orders, prepare food, update status
-Manager	Full Control	Manage menu, staff, pricing, operations
-🌐 API Integration
+The app communicates with a backend API using **Retrofit 2** with the following services:
 
-The app communicates with a backend API using Retrofit 2 with the following services:
-MenuApiService
+### MenuApiService
+```java
 
 - GET /menu/items - Retrieve all menu items
 - POST /menu/items - Add new menu item
 - PUT /menu/items/{id} - Update menu item
 - DELETE /menu/items/{id} - Remove menu item
 
-ChefApiService
+```
+
+### ChefApiService
+```java
 
 - POST /auth/chef/login - Chef authentication
 - GET /chefs - Get all chefs
@@ -158,28 +213,39 @@ ChefApiService
 - GET /orders - Get chef's orders
 - PUT /orders/{id}/status - Update order status
 
-ManagerApiService
+```
+
+### ManagerApiService
+```java
 
 - POST /auth/manager/login - Manager authentication
 - POST /restaurants/register - Register new restaurant
 - GET /restaurants/{id}/orders - Get restaurant orders
 
-Configuration
+```
 
-Update the API base URL in RetrofitClient.java:
+### Configuration
+Update the API base URL in `RetrofitClient.java`:
+```java
 
 private static final String BASE_URL = "http://your-api-server.com/api/";
 
-Note: The app allows cleartext traffic (android:usesCleartextTraffic="true") for development. For production, use HTTPS and update the network security configuration.
-⚙️ Configuration
-Network Security
+```
 
-    Cleartext Traffic: Currently enabled for development
-    INTERNET Permission: Required for API calls
-    RTL Support: Enabled for right-to-left language support
+**Note**: The app allows cleartext traffic (`android:usesCleartextTraffic="true"`) for development. For production, use HTTPS and update the network security configuration.
 
-Minimum Requirements
+## ⚙️ Configuration
 
-    Min API Level: 24 (Android 7.0 Nougat)
-    Target API Level: 35 (Android 15)
-    Compile SDK: 35
+### Network Security
+- **Cleartext Traffic**: Currently enabled for development
+- **INTERNET Permission**: Required for API calls
+- **RTL Support**: Enabled for right-to-left language support
+
+### Minimum Requirements
+- **Min API Level**: 24 (Android 7.0 Nougat)
+- **Target API Level**: 35 (Android 15)
+- **Compile SDK**: 35
+
+---
+
+**Happy Coding! 🚀**
