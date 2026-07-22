@@ -18,8 +18,6 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyOrdersFragment extends Fragment {
 
@@ -39,11 +37,7 @@ public class MyOrdersFragment extends Fragment {
         myOrdersRecyclerView = view.findViewById(R.id.myOrdersRecyclerView);
         myOrdersRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
-        api = new Retrofit.Builder()
-                .baseUrl("http://10.100.60.105:8080/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(FoodApi.class);
+        api = RetrofitClient.getClient().create(FoodApi.class);
 
         fetchMenuToBuildDictionary();
 
