@@ -17,8 +17,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CustomerFragment extends Fragment {
 
@@ -33,11 +31,7 @@ public class CustomerFragment extends Fragment {
         menuRecyclerView = view.findViewById(R.id.menuRecyclerView);
         menuRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
-        FoodApi api = new Retrofit.Builder()
-                .baseUrl("http://10.100.60.105:8080/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(FoodApi.class);
+        FoodApi api = RetrofitClient.getClient().create(FoodApi.class);
 
         // Fetch Menu
         api.getMenu().enqueue(new Callback<List<MenuItem>>() {

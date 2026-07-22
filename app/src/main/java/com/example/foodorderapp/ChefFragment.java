@@ -18,8 +18,6 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ChefFragment extends Fragment {
 
@@ -40,11 +38,7 @@ public class ChefFragment extends Fragment {
         kitchenRecyclerView = view.findViewById(R.id.kitchenRecyclerView);
         kitchenRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
-        api = new Retrofit.Builder()
-                .baseUrl("http://10.100.60.105:8080/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(FoodApi.class);
+        api = RetrofitClient.getClient().create(FoodApi.class);
 
         // 1. Fetch the menu first to build the dictionary, THEN start polling orders
         fetchMenuToBuildDictionary();

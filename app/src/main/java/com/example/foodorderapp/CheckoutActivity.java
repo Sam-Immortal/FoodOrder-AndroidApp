@@ -10,8 +10,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CheckoutActivity extends AppCompatActivity {
 
@@ -54,11 +52,7 @@ public class CheckoutActivity extends AppCompatActivity {
             // Convert the typed text into a real Integer
             Integer tableNum = Integer.parseInt(tableString);
 
-            FoodApi api = new Retrofit.Builder()
-                    .baseUrl("http://10.100.60.105:8080/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build()
-                    .create(FoodApi.class);
+            FoodApi api = RetrofitClient.getClient().create(FoodApi.class);
 
             for (MenuItem item : cart) {
                 // WE NOW PASS BOTH THE FOOD ID AND THE TABLE NUMBER!
